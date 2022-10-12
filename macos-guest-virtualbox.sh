@@ -753,6 +753,10 @@ VBoxManage setextradata "${vm_name}" \
  "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 0
 VBoxManage setextradata "${vm_name}" \
   "VBoxInternal/TM/TSCMode" "RealTSCOffset"  # avoid boot loop when upgrading to Monterey
+VBoxManage modifyvm "${vm_name}" \
+  --cpu-profile "Intel Core i7-6700K"  # working profile, doesn't works on my i7-12
+VBoxManage modifyvm "${vm_name}" \
+  --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff  # set cpuid
 }
 
 # Create the macOS base system virtual disk image
